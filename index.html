@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>욕설 필터 테스트</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 50px;
+      background-color: #fafafa;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #inputBox {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      font-size: 16px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 8px;
+      background-color: #f0f0f0;
+      width: fit-content;
+    }
+
+    .label {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧹 욕설 필터 테스트</h1>
+
+  <label for="inputBox" class="label">문장을 입력하세요:</label><br>
+  <input type="text" id="inputBox" placeholder="예: 안녕 씨발 오늘 어때?" />
+
+  <div class="label">필터링 결과:</div>
+  <div id="output">입력 대기 중...</div>
+
+  <script type="module">
+    import { filterBadWords } from './chat_filter.js';
+
+    const inputBox = document.getElementById('inputBox');
+    const output = document.getElementById('output');
+
+    inputBox.addEventListener('input', () => {
+      const filtered = filterBadWords(inputBox.value);
+      output.textContent = filtered || '입력 대기 중...';
+    });
+  </script>
+</body>
+</html>
